@@ -49,16 +49,20 @@ To run this project, you need the following:
 
 3. Create a .env file in the root directory of the project and populate it with your API keys and the name of the env & index on pinecone:
 
-  ```bash
+```bash
 - OPENAI_API_KEY=your_openai_api_key
 - PINECONE_API_KEY=your_pinecone_api_key
 - PINECONE_ENVIRONMENT=your_pinecone_environment
 - PINECONE_INDEX=your_pinecone_index
 - DISCORD_API_KEY=your_discord_key
 - SPECIFIC_CHANNEL_ID=your_specific_channel
-  ```
+```
 
-4. Start the bot:
+4. Compile TypeScript code:
+   ```bash
+   npm run tsc
+   ```
+5. Start the bot:
 
    ```bash
    npm run start
