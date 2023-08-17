@@ -94,7 +94,7 @@ async function startBot() {
 
   discordClient.on(Events.MessageCreate, async (message) => {
     if (message.author.bot) return;
-    if (message.channelId !== specificChannelId) return;
+    // if (message.channelId !== specificChannelId) return;
     if (message.content.startsWith("/question")) {
       if (checkQuota(message.author.id)) {
         await handleMessage(
