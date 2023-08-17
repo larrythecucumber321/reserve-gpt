@@ -18,13 +18,11 @@ import {
  * @param  params - The parameters to initialize the Pinecone client with.
  * @returns - The created and initialized Pinecone client.
  */
-export const createPineconeClient = async (
-  params: PineconeClientParams
-) => {
+export const createPineconeClient = async (params: PineconeClientParams) => {
   const client = new PineconeClient();
   await client.init(params);
   return client;
-}
+};
 
 /**
  * Queries the Pinecone vector store with a given question, returning the store's response.
@@ -171,10 +169,7 @@ export const createPineconeIndexIfNotExist = async (
  * @param doc - The document to process.
  * @param openAIApiKey - The API key to use for the OpenAI language model.
  */
-const processDocument = async (
-  doc: Document,
-  openAIApiKey: string
-) => {
+const processDocument = async (doc: Document, openAIApiKey: string) => {
   const txtPath = await doc.metadata.source;
   const text = doc.pageContent;
 
@@ -190,17 +185,20 @@ const processDocument = async (
     chunks.map((chunk) => chunk.pageContent.replace(/\n/g, " "))
   );
 
-  return chunks.map((chunk, idx) => ({
-    id: `${txtPath}_${idx}`,
-    values: embeddingsArrays[idx],
-    metadata: {
-      ...chunk.metadata,
-      loc: JSON.stringify(chunk.metadata.loc),
-      pageContent: chunk.pageContent,
-      txtPath: txtPath,
-      docLink: documentLink,
-    },
-  }) as Vector);
+  return chunks.map(
+    (chunk, idx) =>
+      ({
+        id: `${txtPath}_${idx}`,
+        values: embeddingsArrays[idx],
+        metadata: {
+          ...chunk.metadata,
+          loc: JSON.stringify(chunk.metadata.loc),
+          pageContent: chunk.pageContent,
+          txtPath: txtPath,
+          docLink: documentLink,
+        },
+      } as Vector)
+  );
 };
 
 /**
@@ -208,10 +206,7 @@ const processDocument = async (
  * @param index - The Pinecone index to update.
  * @param vectors - The vectors to upsert.
  */
-const upsertVectors = async (
-  index: VectorOperationsApi,
-  vectors: Vector[]
-) => {
+const upsertVectors = async (index: VectorOperationsApi, vectors: Vector[]) => {
   const batchSize = 100;
   for (let i = 0; i < vectors.length; i += batchSize) {
     const batch = vectors.slice(i, i + batchSize);

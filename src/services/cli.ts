@@ -23,7 +23,7 @@ export const getOptionOrEnv = (
   } else {
     return defaultValue;
   }
-}
+};
 
 /**
  * Exits the process with an error message if the given value is null or undefined.
@@ -35,4 +35,4 @@ export const exitIfNull = (value: any, errorMessage: string) => {
     console.error(errorMessage);
     process.exit(1);
   }
-}
+};
