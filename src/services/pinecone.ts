@@ -100,7 +100,7 @@ export const queryLanguageModelWithPineconeResponse = async (
   if (queryResponse?.matches?.length) {
     console.log(`Found ${queryResponse.matches.length} matches...`);
     const instructions =
-      "You're an AI assistant. Based on the following excerpts from a long document, provide a conversational answer to the question asked. If the answer isn't in the context, simply respond with 'Hmm, I'm not sure.' Don't invent an answer. If the question isn't related to the context, state that you are programmed to answer questions relevant to the given context. Remember, you cannot use images or visual content to form your answer. Do the answer in less than 2000 characters.";
+      "You're an AI assistant. Based on the following excerpts from a long document, provide a conversational answer to the question asked. If the answer isn't in the context, simply respond with 'Hmm, I'm not sure.' Don't invent an answer. If the question isn't related to the context, state that you are programmed to answer questions relevant to the given context. Remember, you cannot use images or visual content to form your answer. Do the answer in less than 2000 characters. You should never answer with a response that would suggest that Reserve provides an offering of securities. So when prompted with questions such as 'is Reserve a good investment', or 'what kind of returns can this project give me', your answer should inform the user that you are unable to provide investment advice.";
     const preparedQuestion = `${instructions}\n\n${question}`;
     const llm = new OpenAI({ modelName: "gpt-3.5-turbo-16k", openAIApiKey });
     const chain = loadQAStuffChain(llm);
