@@ -46,7 +46,7 @@ export const handleReadCommand = async (
 
       // Prepare a string that contains all the document links
       let linksString = documentLinks
-        .map((link, index) => `**Link ${index + 1}:** <${link}>`)
+        .map((link, index) => `**Link ${index + 1}:** ${link}`)
         .join("\n");
 
       // Send the answer and document links as a message to the Discord channel
@@ -62,4 +62,4 @@ export const handleReadCommand = async (
     // Send an error message to the Discord channel if an error occurs
     message.channel.send("An error occurred while processing your request.");
   }
-}
+};
